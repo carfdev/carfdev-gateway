@@ -31,5 +31,5 @@ func (c *EmailController) SendContact(ctx *gin.Context) {
 		return
 	}
 
-	c.res.SuccessResponse(ctx, http.StatusCreated, resp)
+	c.res.SuccessResponse(ctx, resp.Status, resp.Message)
 }
