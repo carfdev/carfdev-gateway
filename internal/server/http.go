@@ -25,7 +25,7 @@ func NewHTTPServer(cfg *config.Config) *HTTPServer {
 		log.Printf("Warning: could not set trusted proxies: %v", err)
 	}
 
-	api := r.Group("/api")
+	api := r.Group("/v1")
 
 	// Module Register
 	email.RegisterRoutes(api.Group("/email"), cfg)
@@ -37,5 +37,6 @@ func NewHTTPServer(cfg *config.Config) *HTTPServer {
 }
 
 func (s *HTTPServer) Start() error {
+	log.Printf("Starting HTTP server on port %s", s.config.Port)
 	return s.engine.Run(":" + s.config.Port)
 }
