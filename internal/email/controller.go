@@ -27,7 +27,7 @@ func (c *EmailController) SendContact(ctx *gin.Context) {
 
 	resp, err := c.service.SendContact(ctx.Request.Context(), req)
 	if err != nil {
-		c.res.ErrorResponse(ctx, http.StatusBadGateway, "Unable to send contact email at this time.")
+		c.res.ErrorResponse(ctx, http.StatusInternalServerError, "Unable to send contact email at this time.")
 		return
 	}
 
