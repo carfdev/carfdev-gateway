@@ -12,6 +12,7 @@ type Config struct {
 	Env     string
 	Domain  string
 	NatsUrl string
+	Client  string
 }
 
 func LoadConfig() *Config {
@@ -41,11 +42,17 @@ func LoadConfig() *Config {
 		url = "nats://localhost:4222"
 	}
 
+	client := os.Getenv("CLIENT_URL")
+	if client == "" {
+		client = "http://localhost:4321"
+	}
+
 	return &Config{
 		Port:    port,
 		GinMode: mode,
 		Env:     env,
 		Domain:  domain,
 		NatsUrl: url,
+		Client:  client,
 	}
 }

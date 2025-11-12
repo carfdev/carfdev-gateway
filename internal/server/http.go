@@ -2,7 +2,9 @@ package server
 
 import (
 	"log"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"github.com/carfdev/carfdev-gateway/internal/config"
@@ -24,6 +26,21 @@ func NewHTTPServer(cfg *config.Config) *HTTPServer {
 	if err := r.SetTrustedProxies(nil); err != nil {
 		log.Printf("Warning: could not set trusted proxies: %v", err)
 	}
+
+	corsCfg := cors.Config{
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}
+
+	if cfg.Env == "development" {
+		corsCfg.AllowAllOrigins = true
+	} else {
+		corsCfg.AllowOrigins = []string{cfg.Client}
+	}
+
+	r.Use(cors.New(corsCfg))
 
 	api := r.Group("/v1")
 
