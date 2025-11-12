@@ -44,7 +44,7 @@ func LoadConfig() *Config {
 
 	client := os.Getenv("CLIENT_URL")
 	if client == "" {
-		client = "http://localhost:4321"
+		client = "http://localhost:8080"
 	}
 
 	return &Config{

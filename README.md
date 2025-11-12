@@ -48,6 +48,7 @@ GIN_MODE=debug
 ENV=development
 DOMAIN=localhost:3000
 NATS_URL=nats://localhost:4222
+CLIENT_URL=http://localhost:8080
 ```
 
 5. Run the server:
@@ -165,13 +166,14 @@ carfdev-gateway/
 
 Environment variables:
 
-| Variable   | Description                               | Default                 |
-| ---------- | ----------------------------------------- | ----------------------- |
-| `PORT`     | Server port                               | `8080`                  |
-| `GIN_MODE` | Gin framework mode (`debug`, `release`)   | `debug`                 |
-| `ENV`      | Environment (`development`, `production`) | `development`           |
-| `DOMAIN`   | Domain for cookies                        | `localhost:8080`        |
-| `NATS_URL` | NATS server URL                           | `nats://localhost:4222` |
+| Variable     | Description                               | Default                 |
+| ------------ | ----------------------------------------- | ----------------------- |
+| `PORT`       | Server port                               | `8080`                  |
+| `GIN_MODE`   | Gin framework mode (`debug`, `release`)   | `debug`                 |
+| `ENV`        | Environment (`development`, `production`) | `development`           |
+| `DOMAIN`     | Domain for cookies                        | `localhost:8080`        |
+| `NATS_URL`   | NATS server URL                           | `nats://localhost:4222` |
+| `CLIENT_URL` | Client web URL                            | `http://localhost:8080` |
 
 ## 📦 NATS Integration
 
@@ -202,6 +204,7 @@ GIN_MODE=release
 ENV=production
 DOMAIN=yourdomain.com
 NATS_URL=nats://nats-server:4222
+CLIENT_URL=https://yourclientdomain.com
 ```
 
 2. Build optimized Docker image:
